@@ -38,6 +38,7 @@ class StoreReportGenerationConsumer(Consumer):
             self.update_store_monitoring_reqeust(message, "IN_PROGRESS")
             self.process_message(request_id)
             self.update_store_monitoring_reqeust(message, "COMPLETED")
+            self.consumer.commit_async(message)
             logger.info(f"PROCESSING COMPLETED FOR REQUEST ID - {request_id}")
 
     def process_message(self, request_id):
