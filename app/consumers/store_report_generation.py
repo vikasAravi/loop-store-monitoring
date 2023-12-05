@@ -42,6 +42,7 @@ class StoreReportGenerationConsumer(Consumer):
             logger.info(f"PROCESSING COMPLETED FOR REQUEST ID - {request_id}")
 
     def process_message(self, request_id):
+
         # CREATE A CSV WITH THE HEADERS
         report_df = pd.DataFrame(columns=REPORT_COLUMNS)
 
@@ -91,7 +92,7 @@ class StoreReportGenerationConsumer(Consumer):
             store_information = merged_data[merged_data["store_id"] == store_id]
 
             # CREATE A NEW COLUMN FOR BUSINESS HOURS CHECKS
-            store_information['timestamp_local_datetime'] = pd.to_datetime(store_information['timestamp_local'])
+            store_information.loc[:, 'timestamp_local_datetime'] = pd.to_datetime(store_information['timestamp_local'])
 
             # APPLY THE RULE AND REMOVE THE ROWS WHICH ARE NOT IN BUSINESS HOURS
             store_information['is_within_business_hours'] = store_information.apply(self.is_within_business_hours,

@@ -12,6 +12,7 @@ QUEUED = "QUEUED"
 IN_PROGRESS = "IN_PROGRESS"
 COMPLETED = "COMPLETED"
 
+
 class StoreMonitoringReportImpl(StoreMonitoringReport):
 
     def __init__(self, store_monitoring_report_repository: StoreMonitoringReportRepository, kafka_producer:
@@ -37,9 +38,5 @@ class StoreMonitoringReportImpl(StoreMonitoringReport):
                 "status": _output["status"]
             }
         file_path = get_reports_path(request_id)
-        return {
-            "file": FileResponse(file_path,
-                                 headers={"Content-Disposition": f"attachment; filename={request_id}.csv",
-                                          "Content-Type": "text/csv"}),
-            "status": _output["status"]
-        }
+        # Return the file using FileResponse
+        return FileResponse(file_path, filename=request_id)

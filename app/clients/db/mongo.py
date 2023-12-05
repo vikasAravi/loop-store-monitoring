@@ -1,4 +1,7 @@
+import os
+
 from pymongo import MongoClient
+
 
 
 class MongoClusterManager:
@@ -14,4 +17,4 @@ class MongoClusterManager:
         if MongoClusterManager.__client is not None:
             raise Exception("This class is a singleton")
         else:
-            MongoClusterManager.__client = MongoClient(host='mongodb://localhost:27017/')
+            MongoClusterManager.__client = MongoClient(host="mongodb://localhost:27017/")

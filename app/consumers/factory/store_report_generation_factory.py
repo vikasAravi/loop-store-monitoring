@@ -16,7 +16,7 @@ class StoreReportGenerationFactory:
         store_repository = StoreRepository()
         store_status_repository = StoreStatusRepository()
         store_monitoring_report_repository = StoreMonitoringReportRepository()
-        consumer = KafkaConsumerClientManager.get_kafka_consumer("localhost:9092", 'latest',
+        consumer = KafkaConsumerClientManager.get_kafka_consumer("localhost:9093", 'latest',
                                                                  'repost_generation_group', False,
                                                                  lambda m: json.loads(m.decode('utf-8')),
                                                                  100)
