@@ -1,15 +1,15 @@
+import os
+
 import kafka
 import json
 
-
-KAFKA_BROKERS = 'localhost:9092'
 
 
 class KafkaProducerClientManager:
     __connection = None
 
     def __init__(self):
-        self.__connection = kafka.KafkaProducer(bootstrap_servers=KAFKA_BROKERS,
+        self.__connection = kafka.KafkaProducer(bootstrap_servers="localhost:9093",
                                             value_serializer=lambda v: json.dumps(v).encode('utf-8'),
                                             key_serializer=lambda v: json.dumps(v).encode('utf-8'),
                                             retries=2)

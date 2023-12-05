@@ -3,9 +3,15 @@ import logging
 from fastapi import FastAPI
 import uvicorn
 
+
+from dotenv import load_dotenv
+load_dotenv()
+
+
 from app.store_monitor_app.api.v1 import store_monitor
 from app.store_app.api.v1 import store
 from app.crons import store_status_polling_cron
+
 
 app = FastAPI()
 logger = logging.getLogger("uvicorn.access")
